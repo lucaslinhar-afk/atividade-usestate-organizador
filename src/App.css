@@ -1,0 +1,503 @@
+
+/* ================================
+   1. CONFIGURAÇÕES GERAIS
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #f1f5f9;
+  background: #020617;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --azul: #3b82f6;
+  --azul-claro: #60a5fa;
+  --texto: #f1f5f9;
+  --texto-suave: #94a3b8;
+  --borda: rgba(148, 163, 184, 0.2);
+  --vidro: rgba(15, 23, 42, 0.76);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(37, 99, 235, 0.28),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(14, 165, 233, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #020617, #0b1f4b 50%, #102d68);
+
+  background-attachment: fixed;
+}
+
+/* Brilho sutil no fundo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: radial-gradient(
+    rgba(147, 197, 253, 0.15) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 90%
+  );
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ================================
+   2. CONTEÚDO PRINCIPAL
+================================ */
+main {
+  width: min(680px, calc(100% - 32px));
+  margin: 70px auto;
+  padding: 36px;
+  position: relative;
+
+  background: var(--vidro);
+  border: 1px solid var(--borda);
+  border-radius: 24px;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  animation: aparecer 0.7s ease both;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+main:hover {
+  border-color: rgba(96, 165, 250, 0.35);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.4),
+    0 0 35px rgba(59, 130, 246, 0.08);
+}
+
+/* ================================
+   3. TÍTULO
+================================ */
+h1 {
+  margin: 0 0 30px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+
+  background: linear-gradient(
+    100deg,
+    #ffffff 10%,
+    #93c5fd 55%,
+    #38bdf8 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: deslizar 0.7s ease both;
+}
+
+/* ================================
+   4. FORMULÁRIO
+================================ */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+
+  background: rgba(2, 6, 23, 0.35);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+form:focus-within {
+  border-color: rgba(96, 165, 250, 0.7);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+form label {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+form input {
+  width: 100%;
+  padding: 14px 16px;
+
+  color: var(--texto);
+  background: rgba(15, 23, 42, 0.8);
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+form input::placeholder {
+  color: #64748b;
+}
+
+form input:focus {
+  border-color: var(--azul-claro);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ================================
+   5. BOTÕES
+================================ */
+button {
+  padding: 11px 16px;
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.88rem;
+
+  background: rgba(51, 65, 85, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  background: rgba(71, 85, 105, 0.8);
+  border-color: rgba(147, 197, 253, 0.5);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+/* Botão Adicionar */
+form button {
+  padding: 13px 18px;
+  color: white;
+
+  background: linear-gradient(135deg, #2563eb, #0284c7);
+  border: 1px solid rgba(147, 197, 253, 0.3);
+
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+}
+
+form button:hover {
+  background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+  box-shadow: 0 9px 26px rgba(37, 99, 235, 0.35);
+}
+
+/* ================================
+   6. ESTATÍSTICAS
+================================ */
+main > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin: 24px 0;
+  padding: 16px;
+
+  color: #bfdbfe;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.7;
+
+  background: rgba(30, 64, 175, 0.16);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 12px;
+}
+
+/* ================================
+   7. FILTROS
+================================ */
+main > div[style] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 18px !important;
+}
+
+main > div[style] button {
+  flex: 1;
+  min-width: 90px;
+}
+
+/* ================================
+   8. LISTA DE TAREFAS
+================================ */
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 0;
+  margin: 0 0 20px;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 15px 16px;
+
+  background: rgba(30, 41, 59, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 12px;
+
+  animation: tarefaEntrar 0.35s ease both;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+li:hover {
+  background: rgba(51, 65, 85, 0.65);
+  border-color: rgba(96, 165, 250, 0.35);
+  transform: translateX(3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Texto e checkbox */
+li label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  flex: 1;
+
+  color: #e2e8f0;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+li input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+/* Tarefa concluída */
+li:has(input[type="checkbox"]:checked) {
+  background: rgba(15, 118, 110, 0.12);
+  border-color: rgba(45, 212, 191, 0.2);
+}
+
+li label:has(input[type="checkbox"]:checked) {
+  color: #94a3b8;
+  text-decoration: line-through;
+  text-decoration-color: #64748b;
+}
+
+/* Botão Remover */
+li button {
+  flex-shrink: 0;
+  padding: 8px 11px;
+
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.16);
+  border-color: rgba(248, 113, 113, 0.18);
+
+  font-size: 0.8rem;
+}
+
+li button:hover {
+  color: white;
+  background: #dc2626;
+  border-color: #ef4444;
+  box-shadow: 0 5px 15px rgba(220, 38, 38, 0.2);
+}
+
+/* Mensagem de lista vazia */
+li:only-child:not(:has(input[type="checkbox"])) {
+  justify-content: center;
+  min-height: 85px;
+
+  color: var(--texto-suave);
+  background: rgba(15, 23, 42, 0.25);
+  border-style: dashed;
+  text-align: center;
+}
+
+/* ================================
+   9. LIMPAR CONCLUÍDAS
+================================ */
+main > button:last-child {
+  width: 100%;
+  padding: 13px;
+
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.12);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+main > button:last-child:hover {
+  color: white;
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  border-color: #ef4444;
+  box-shadow: 0 7px 22px rgba(220, 38, 38, 0.2);
+}
+
+/* ================================
+   10. ANIMAÇÕES
+================================ */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes deslizar {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tarefaEntrar {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   11. RESPONSIVIDADE
+================================ */
+@media (max-width: 580px) {
+  main {
+    width: calc(100% - 24px);
+    margin: 24px auto;
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  main > p {
+    padding: 12px;
+    font-size: 0.82rem;
+  }
+
+  main > div[style] button {
+    min-width: 75px;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+
+  li {
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  li label {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+
+  li button {
+    padding: 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Acessibilidade: respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
